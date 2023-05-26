@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/app.js",
-    "dev": "nodemon server/app.js"
+    "start": "node -r dotenv/config server/app.js",
+    "dev": "nodemon -r dotenv/config server/app.js"
   },
   "keywords": [],
   "author": "",
