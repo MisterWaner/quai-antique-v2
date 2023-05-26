@@ -28,10 +28,13 @@ app.use(
     })
 );
 
+//fetch main route
 app.get("/api", (req, res) => {
     res.send("API en ligne et fonctionnelle");
 });
 
+
+//start server with sequelize authentication
 db.sequelize
     .authenticate()
     .then(() => console.log("db is connected"))
