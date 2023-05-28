@@ -2,9 +2,7 @@
 import db from "../config/sequelize-config.js";
 import bcrypt from "bcrypt";
 import { config } from "dotenv";
-
-
-
+import jwt from "jsonwebtoken";
 config();
 
 //register
@@ -49,6 +47,14 @@ const register = async (req, res) => {
             role: role,
         });
 
+        if (user.role === "admin") {
+            let admin;
+            user = admin;
+        } else if (user.role === "client") {
+            let client;
+            user = client;
+        }
+
         return res.json({
             message: "Utilisateur créé avec succès",
             data: user,
@@ -85,13 +91,26 @@ const login = async (req, res) => {
                 });
             });
         };
+        if (!validPwd) {
+            return res.status(401).json({ message: "Mot de passe invalide" });
+        }
 
+        //Setup token
+        const maxAge = 1 * 60 * 60;
+        const jwtToken = jwt.sign(
+            {
+                id: user.id,
+                email: user.email,
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: maxAge }
+        );
 
-
-
-
-
+        res.json({ message: "Bienvenue !", token: jwtToken });
     } catch (error) {}
 };
 
-export { register };
+//logout
+const logout = () => {};
+
+export { register, login, logout };

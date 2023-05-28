@@ -1,30 +1,24 @@
+//-------------------------Import modules----------------------------
 import express from "express";
 import cors from "cors";
 import session from "express-session";
 import flash from "express-flash";
-import passport from "passport";
 import cookieParser from "cookie-parser";
-import methodOverride from "method-override"
+import methodOverride from "method-override";
 import { config } from "dotenv";
 import db from "./config/sequelize-config.js";
+import "./auth/passport.js";
+
+import authRouter from "./routes/auth.js";
+import userRouter from "./routes/user.js";
 
 config();
 const app = express();
 
-//init passport
-import initialize from "./config/passport-config.js";
+//--------------------------init passport----------------------------------
 
-initialize(
-    passport,
-    (email) => {
-        db.User.findOne({ where: { email: email } });
-    },
-    (id) => {
-        db.User.findByPk(id);
-    }
-);
 
-//Middlewares
+//---------------------------Middlewares-----------------------------------
 app.use(
     cors({
         origin: "*",
@@ -51,14 +45,15 @@ app.use(
             "Origin, X-Requested-With, x-access-token, role, Content, Accept, Content-Type, Authorization",
     })
 );
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 
-//fetch main route
+//---------------------------------------Routes------------------------------------
 app.get("/api", (req, res) => {
     res.send("API en ligne et fonctionnelle");
 });
+
+app.use("/auth", authRouter);
+app.use("/user", userRouter)
 
 //start server with sequelize authentication
 db.sequelize
