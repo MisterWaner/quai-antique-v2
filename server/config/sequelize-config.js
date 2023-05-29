@@ -52,39 +52,119 @@ db.Resa = Resa(sequelize);
 //Inheritance between User, Client and Admin
 db.User.hasMany(db.Client, {
     as: "clients",
-    foreignKey: "userId",
+    foreignKey: {
+        name: "userId",
+        allowNull: false,
+    },
     sourceKey: "id",
     scope: { role: "client" },
 });
 db.User.hasMany(db.Admin, {
     as: "admins",
-    foreignKey: "userId",
+    foreignKey: {
+        name: "userId",
+        allowNull: false,
+    },
     sourceKey: "id",
     scope: { role: "admin" },
 });
 
-db.Client.hasMany(db.Resa, {foreignKey: "clientId", sourceKey: "id"});
+db.Client.hasMany(db.Resa, {
+    foreignKey: {
+        name: "clientId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Resa.belongsTo(db.Client);
-db.Slot.hasMany(db.Resa, {foreignKey: "slotId", sourceKey: "id"});
+db.Slot.hasMany(db.Resa, {
+    foreignKey: {
+        name: "slotId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Resa.belongsTo(db.Slot);
-db.Admin.hasMany(db.Permission, {foreignKey: "adminId", sourceKey: "id"});
+db.Admin.hasMany(db.Permission, {
+    foreignKey: {
+        name: "adminId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Permission.belongsTo(db.Admin);
-db.Category.hasMany(db.Dish, {foreignKey: "categoryId", sourceKey: "id"});
+db.Category.hasMany(db.Dish, {
+    foreignKey: {
+        name: "categoryId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Dish.belongsTo(db.Category);
-db.Menu.belongsToMany(db.Formula, { through: db.Menu_Formula });
-db.Formula.belongsToMany(db.Menu, { through: db.Menu_Formula });
+db.Menu.belongsToMany(db.Formula, {
+    foreignKey: {
+        name: "menuId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+    through: db.Menu_Formula,
+});
+db.Formula.belongsToMany(db.Menu, {
+    foreignKey: {
+        name: "formulaId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+    through: db.Menu_Formula,
+});
 
-db.Permission.hasMany(db.Category, {foreignKey: "permissionId", sourceKey: "id"});
+db.Permission.hasMany(db.Category, {
+    foreignKey: {
+        name: "permissionId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Category.belongsTo(db.Permission);
-db.Permission.hasMany(db.Dish, {foreignKey: "permissionId", sourceKey: "id"});
+db.Permission.hasMany(db.Dish, {
+    foreignKey: {
+        name: "permissionId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Dish.belongsTo(db.Permission);
-db.Permission.hasMany(db.Formula, {foreignKey: "permissionId", sourceKey: "id"});
+db.Permission.hasMany(db.Formula, {
+    foreignKey: {
+        name: "permissionId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Formula.belongsTo(db.Permission);
-db.Permission.hasMany(db.Menu, {foreignKey: "permissionId", sourceKey: "id"});
+db.Permission.hasMany(db.Menu, {
+    foreignKey: {
+        name: "permissionId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Menu.belongsTo(db.Permission);
-db.Permission.hasMany(db.Information, {foreignKey: "permissionId", sourceKey: "id"});
+db.Permission.hasMany(db.Information, {
+    foreignKey: {
+        name: "permissionId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Information.belongsTo(db.Permission);
-db.Permission.hasMany(db.Images, {foreignKey: "permissionId", sourceKey: "id"});
+db.Permission.hasMany(db.Images, {
+    foreignKey: {
+        name: "permissionId",
+        allowNull: false,
+    },
+    sourceKey: "id",
+});
 db.Images.belongsTo(db.Permission);
 
 db.sequelize.sync({ alter: true });

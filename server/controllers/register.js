@@ -2,10 +2,8 @@
 import db from "../config/sequelize-config.js";
 import bcrypt from "bcrypt";
 import { config } from "dotenv";
-import jwt from "jsonwebtoken";
 config();
 
-//register
 const register = async (req, res) => {
     const { email, password, confirmation, role, id } = req.body;
 
@@ -24,6 +22,7 @@ const register = async (req, res) => {
             where: { email: email },
             raw: true,
         });
+
         if (user !== null) {
             return res.status(409).json(`L'utilisateur ${email} existe déjà !`);
         }
@@ -39,7 +38,7 @@ const register = async (req, res) => {
         });
 
         //User creation
-        user = await db.User.create({
+        user = await User.create({
             id: id,
             email: email,
             password: password,
@@ -50,9 +49,15 @@ const register = async (req, res) => {
         if (user.role === "admin") {
             let admin;
             user = admin;
+
+            admin = await db.Admin.create();
         } else if (user.role === "client") {
             let client;
             user = client;
+
+            client = await db.Client.create({
+                userId: user.id,
+            });
         }
 
         return res.json({
@@ -65,52 +70,4 @@ const register = async (req, res) => {
     }
 };
 
-//Login
-const login = async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        if (!email || !password) {
-            return res.send("Données manquantes");
-        }
-
-        //retrieve user
-        let user = await db.User.findOne({
-            where: { email: email },
-            raw: true,
-        });
-        if (!user) {
-            res.status(400).json({ message: "Cette utilisateur n'existe pas" });
-        }
-
-        //Check password
-        const validPwd = (enteredPwd, originalPwd) => {
-            return new Promise((resolve) => {
-                bcrypt.compare(enteredPwd, originalPwd, (error, res) => {
-                    resolve(res);
-                });
-            });
-        };
-        if (!validPwd) {
-            return res.status(401).json({ message: "Mot de passe invalide" });
-        }
-
-        //Setup token
-        const maxAge = 1 * 60 * 60;
-        const jwtToken = jwt.sign(
-            {
-                id: user.id,
-                email: user.email,
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: maxAge }
-        );
-
-        res.json({ message: "Bienvenue !", token: jwtToken });
-    } catch (error) {}
-};
-
-//logout
-const logout = () => {};
-
-export { register, login, logout };
+export default register;

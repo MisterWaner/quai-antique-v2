@@ -7,7 +7,6 @@ import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
 import { config } from "dotenv";
 import db from "./config/sequelize-config.js";
-import "./auth/passport.js";
 
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
@@ -16,7 +15,6 @@ config();
 const app = express();
 
 //--------------------------init passport----------------------------------
-
 
 //---------------------------Middlewares-----------------------------------
 app.use(
@@ -53,9 +51,9 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/auth", authRouter);
-app.use("/user", userRouter)
+app.use("/user", userRouter);
 
-//start server with sequelize authentication
+//start server
 db.sequelize
     .authenticate()
     .then(() => console.log("db is connected"))
