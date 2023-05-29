@@ -40,6 +40,7 @@ export default (sequelize) => {
                 allowNull: true,
                 unique: true,
             },
+            
         },
         {
             modelName: "client",

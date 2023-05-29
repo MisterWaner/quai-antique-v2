@@ -36,7 +36,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.User = User(sequelize);
-db.Client = Client(sequelize);
+db.Client = Client(sequelize)
 db.Admin = Admin(sequelize);
 db.Images = Images(sequelize);
 db.Dish = Dish(sequelize);

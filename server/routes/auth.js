@@ -1,7 +1,7 @@
 //Import modules
 import { Router } from "express";
 import login from "../controllers/login.js";
-import register from "../controllers/register.js";
+import register from "../controllers/registrations.js";
 
 const authRouter = Router();
 

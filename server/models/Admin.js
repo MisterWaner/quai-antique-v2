@@ -12,7 +12,7 @@ export default (sequelize) => {
                 autoIncrement: true,
                 primaryKey: true,
                 allowNull: false,
-            },
+            }
         },
         {
             modelName: "admin",

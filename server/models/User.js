@@ -2,7 +2,6 @@
 import { DataTypes, Model } from "sequelize";
 
 export default (sequelize) => {
-
     class User extends Model {}
 
     User.init(
@@ -11,7 +10,7 @@ export default (sequelize) => {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 allowNull: false,
-                primaryKey: true
+                primaryKey: true,
             },
             email: {
                 type: DataTypes.STRING,
@@ -36,18 +35,15 @@ export default (sequelize) => {
                 allowNull: true,
                 values: ["admin", "client"],
                 defaultValue: "client",
-            }
-
+            },
         },
         {
             modelName: "user",
             tableName: "users",
             timestamps: false,
-            sequelize
+            sequelize,
         }
     );
 
     return User;
-}
-
-
+};

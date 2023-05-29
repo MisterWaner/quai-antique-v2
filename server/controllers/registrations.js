@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { config } from "dotenv";
 config();
 
-const register = async (req, res) => {
+async function register(req, res) {
     const { email, password, confirmation, role, id } = req.body;
 
     try {
@@ -22,7 +22,6 @@ const register = async (req, res) => {
             where: { email: email },
             raw: true,
         });
-
         if (user !== null) {
             return res.status(409).json(`L'utilisateur ${email} existe déjà !`);
         }
@@ -38,27 +37,13 @@ const register = async (req, res) => {
         });
 
         //User creation
-        user = await User.create({
+        user = await db.User.create({
             id: id,
             email: email,
             password: password,
             confirmation: confirmation,
             role: role,
         });
-
-        if (user.role === "admin") {
-            let admin;
-            user = admin;
-
-            admin = await db.Admin.create();
-        } else if (user.role === "client") {
-            let client;
-            user = client;
-
-            client = await db.Client.create({
-                userId: user.id,
-            });
-        }
 
         return res.json({
             message: "Utilisateur créé avec succès",
@@ -68,6 +53,6 @@ const register = async (req, res) => {
         console.log(error);
         return res.status(500).json({ message: "Erreur lors de la création" });
     }
-};
+}
 
 export default register;
