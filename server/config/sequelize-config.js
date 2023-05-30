@@ -7,7 +7,7 @@ import User from "../models/User.js";
 import Client from "../models/Client.js";
 import Admin from "../models/Admin.js";
 import Images from "../models/Images.js";
-import Dish from "../models/Dish.js";
+import Meal from "../models/Meal.js";
 import Category from "../models/Category.js";
 import Formula from "../models/Formula.js";
 import Menu from "../models/Menu.js";
@@ -39,7 +39,7 @@ db.User = User(sequelize);
 db.Client = Client(sequelize)
 db.Admin = Admin(sequelize);
 db.Images = Images(sequelize);
-db.Dish = Dish(sequelize);
+db.Meal = Meal(sequelize);
 db.Category = Category(sequelize);
 db.Formula = Formula(sequelize);
 db.Menu = Menu(sequelize);
@@ -93,14 +93,14 @@ db.Admin.hasMany(db.Permission, {
     sourceKey: "id",
 });
 db.Permission.belongsTo(db.Admin);
-db.Category.hasMany(db.Dish, {
+db.Category.hasMany(db.Meal, {
     foreignKey: {
         name: "categoryId",
         allowNull: false,
     },
     sourceKey: "id",
 });
-db.Dish.belongsTo(db.Category);
+db.Meal.belongsTo(db.Category);
 db.Menu.belongsToMany(db.Formula, {
     foreignKey: {
         name: "menuId",
@@ -126,14 +126,14 @@ db.Permission.hasMany(db.Category, {
     sourceKey: "id",
 });
 db.Category.belongsTo(db.Permission);
-db.Permission.hasMany(db.Dish, {
+db.Permission.hasMany(db.Meal, {
     foreignKey: {
         name: "permissionId",
         allowNull: false,
     },
     sourceKey: "id",
 });
-db.Dish.belongsTo(db.Permission);
+db.Meal.belongsTo(db.Permission);
 db.Permission.hasMany(db.Formula, {
     foreignKey: {
         name: "permissionId",

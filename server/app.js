@@ -8,8 +8,15 @@ import methodOverride from "method-override";
 import { config } from "dotenv";
 import db from "./config/sequelize-config.js";
 
+
+//Import Routers
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
+import categoryRouter from "./routes/category.js";
+import mealRouter from "./routes/meal.js";
+import infoRouter from "./routes/info.js";
+import resaRouter from "./routes/resa.js";
+import slotRouter from "./routes/slot.js";
 
 config();
 const app = express();
@@ -51,7 +58,12 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/auth", authRouter);
-app.use("/user", userRouter);
+app.use("/users", userRouter);
+app.use('/categories', categoryRouter);
+app.use('/meals', mealRouter);
+app.use('/infos', infoRouter);
+app.use('/resas', resaRouter);
+app.use('/slots', slotRouter);
 
 //start server
 db.sequelize

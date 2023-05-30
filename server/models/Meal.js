@@ -1,12 +1,10 @@
 //Import modules
 import { DataTypes, Model } from "sequelize";
-import Category from "./Category.js";
-import Permission from "./Permission.js";
 
 export default (sequelize) => {
-    class Dish extends Model {}
+    class Meal extends Model {}
 
-    Dish.init(
+    Meal.init(
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -28,12 +26,12 @@ export default (sequelize) => {
             },
         },
         {
-            modelName: "dish",
-            tableName: "dishes",
+            modelName: "meal",
+            tableName: "meals",
             timestamps: false,
             sequelize,
         }
     );
 
-    return Dish;
+    return Meal;
 };

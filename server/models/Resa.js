@@ -1,7 +1,5 @@
 //Import modules
 import { DataTypes, Model } from "sequelize";
-import Client from "./Client.js";
-import Slot from "./Slot.js";
 
 export default (sequelize) => {
     class Reservation extends Model{}

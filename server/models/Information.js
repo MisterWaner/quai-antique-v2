@@ -17,19 +17,19 @@ export default (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            midiTimeFrom: {
+            midiStart: {
                 type: DataTypes.TIME,
                 allowNull: true,
             },
-            midiTimeTo: {
+            midiClose: {
                 type: DataTypes.TIME,
                 allowNull: true,
             },
-            soirTimeFrom: {
+            soirStart: {
                 type: DataTypes.TIME,
                 allowNull: true,
             },
-            soirTimeTo: {
+            soirClose: {
                 type: DataTypes.TIME,
                 allowNull: true,
             },

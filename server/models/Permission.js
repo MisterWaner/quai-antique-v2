@@ -1,6 +1,5 @@
 //Import modules
 import { DataTypes, Model } from "sequelize";
-import Admin from "./Admin.js";
 
 export default (sequelize) => {
     class Permission extends Model{}

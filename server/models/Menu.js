@@ -1,6 +1,5 @@
 //Import modules
 import { DataTypes, Model } from "sequelize";
-import Permission from "./Permission.js";
 
 export default (sequelize) => {
     class Menu extends Model {}
