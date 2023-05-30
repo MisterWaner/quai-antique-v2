@@ -12,7 +12,7 @@ export default (sequelize) => {
                 primaryKey: true,
                 allowNull: false,
             },
-            name: {
+            title: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },

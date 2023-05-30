@@ -18,6 +18,9 @@ import infoRouter from "./routes/info.js";
 import resaRouter from "./routes/resa.js";
 import slotRouter from "./routes/slot.js";
 import roleRouter from "./routes/role.js";
+import menuRouter from "./routes/menu.js";
+import formulaRouter from "./routes/formula.js";
+import imageRouter from "./routes/images.js";
 
 config();
 const app = express();
@@ -66,6 +69,9 @@ app.use('/infos', infoRouter);
 app.use('/resas', resaRouter);
 app.use('/slots', slotRouter);
 app.use('/roles', roleRouter);
+app.use('/menus', menuRouter);
+app.use('/formulas', formulaRouter);
+app.use('/images', imageRouter);
 
 //start server
 db.sequelize

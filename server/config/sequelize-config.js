@@ -45,8 +45,8 @@ db.Slot = Slot(sequelize);
 db.Resa = Resa(sequelize);
 db.Role = Role(sequelize);
 
-//Inheritance between User, Client and Admin
-db.Role.hasMany(db.User, {
+//relations
+Role.User = db.Role.hasMany(db.User, {
     as: "users",
     foreignKey: {
         name: "roleId",
@@ -56,32 +56,36 @@ db.Role.hasMany(db.User, {
     sourceKey: "id"
     
 });
-db.User.belongsTo(db.Role);
-db.User.hasMany(db.Resa, {
+User.Role = db.User.belongsTo(db.Role);
+
+User.Resa = db.User.hasMany(db.Resa, {
     foreignKey: {
         name: "userId",
         allowNull: false,
     },
     sourceKey: "id",
 });
-db.Resa.belongsTo(db.User);
-db.Slot.hasMany(db.Resa, {
+Resa.User = db.Resa.belongsTo(db.User);
+
+Slot.Resa = db.Slot.hasMany(db.Resa, {
     foreignKey: {
         name: "slotId",
         allowNull: false,
     },
     sourceKey: "id",
 });
-db.Resa.belongsTo(db.Slot);
-db.Category.hasMany(db.Meal, {
+Resa.Slot = db.Resa.belongsTo(db.Slot);
+
+Category.Meal = db.Category.hasMany(db.Meal, {
     foreignKey: {
         name: "categoryId",
         allowNull: false,
     },
     sourceKey: "id",
 });
-db.Meal.belongsTo(db.Category);
-db.Menu.belongsToMany(db.Formula, {
+Meal.Category = db.Meal.belongsTo(db.Category);
+
+Menu.Formula = db.Menu.belongsToMany(db.Formula, {
     foreignKey: {
         name: "menuId",
         allowNull: false,
@@ -89,7 +93,7 @@ db.Menu.belongsToMany(db.Formula, {
     sourceKey: "id",
     through: db.Menu_Formula,
 });
-db.Formula.belongsToMany(db.Menu, {
+Formula.Menu = db.Formula.belongsToMany(db.Menu, {
     foreignKey: {
         name: "formulaId",
         allowNull: false,
