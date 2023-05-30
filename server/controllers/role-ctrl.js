@@ -1,7 +1,7 @@
 //Import modules
 import db from "../config/sequelize-config.js";
 
-const addCategory = async (req, res) => {
+const addRole = async (req, res) => {
     const { id, name } = req.body;
 
     try {
@@ -10,24 +10,24 @@ const addCategory = async (req, res) => {
             return res.send("Le nom est nécessaire");
         }
 
-        //Check if category already exist
-        let category = await db.Category.findOne({
+        //Check if role already exist
+        let role = await db.Role.findOne({
             where: { name: name },
             raw: true,
         });
-        if (name !== null) {
-            res.status(409).json(`La catégories ${category} existe déjà !`);
+        if (role !== null) {
+            return res.status(409).json(`Le role ${name} existe déjà !`);
         }
 
-        //Category creation
-        category = await db.Category.create({
+        //Role creation
+        role = await db.Role.create({
             id: id,
             name: name,
         });
 
         return res.json({
-            message: "Catégorie créé avec succès",
-            data: category,
+            message: "Role créé avec succès",
+            data: role,
         });
     } catch (error) {
         res.status(500).json("Database Error");
@@ -35,17 +35,17 @@ const addCategory = async (req, res) => {
     }
 };
 
-const getAllCategories = async (req, res) => {
+const getAllRoles = async (req, res) => {
     try {
-        const categories = await db.Category.findAll();
-        res.status(200).json(categories);
+        const allRoles = await db.Role.findAll();
+        res.status(200).json(allRoles);
     } catch (error) {
         res.status(500).json("Database Error");
         console.log(error);
     }
 };
 
-const getCategory = async (req, res) => {
+const getRole = async (req, res) => {
     const id = parseInt(req.params.id);
 
     if (!id) {
@@ -53,23 +53,23 @@ const getCategory = async (req, res) => {
     }
 
     try {
-        let category = await db.Category.findOne({
+        let role = await db.Role.findOne({
             where: { id: id },
             raw: true,
         });
 
-        if (category === null) {
-            res.status(404).json({ message: "Cette catégorie n'existe pas" });
+        if (role === null) {
+            res.status(404).json({ message: "Ce role n'existe pas" });
         }
 
-        res.status(200).json(category);
+        res.status(200).json(role);
     } catch (error) {
-        res.status(500).json("Database Error");
+        res.status(500).json({ message: "Database Error"});
         console.log(error);
     }
 };
 
-const updateCategory = async (req, res) => {
+const updateRole = async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         const { name } = req.body;
@@ -79,18 +79,18 @@ const updateCategory = async (req, res) => {
             return res.status(400).json({ message: "Il manque un paramètre" });
         }
 
-        //retrieve the user
-        let category = await db.Category.findOne(req.body, {
+        //retrieve the role
+        let role = await db.Role.findOne(req.body, {
             where: { id: id },
             raw: true,
         });
 
-        if (category === null) {
-            res.status(404).json({ message: "Cette catégorie n'existe pas" });
+        if (role === null) {
+            res.status(404).json({ message: "Ce role n'existe pas" });
         }
 
         //update
-        category = await db.Category.update(
+        role = await db.Role.update(
             {
                 name: name,
             },
@@ -99,14 +99,14 @@ const updateCategory = async (req, res) => {
             }
         );
 
-        res.json({ message: "Catégorie mise à jour", data: category });
+        res.json({ message: "Role mis à jour", data: role });
     } catch (error) {
         res.status(500).json("Database Error");
         console.log(error);
     }
 };
 
-const deleteCategory = async (req, res) => {
+const deleteRole = async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         //Check if id is OK
@@ -115,13 +115,13 @@ const deleteCategory = async (req, res) => {
         }
 
         //deletation of user
-        const category = await db.Category.destroy({
+        const role = await db.Role.destroy({
             where: { id: id },
             force: true,
         });
         res.status(200).json(
-            category,
-            "Cette catégorie a été supprimée avec succès"
+            role,
+            "Ce role a été supprimé avec succès"
         );
     } catch (error) {
         res.status(500).json("Database Error");
@@ -130,9 +130,9 @@ const deleteCategory = async (req, res) => {
 };
 
 export {
-    addCategory,
-    getAllCategories,
-    getCategory,
-    updateCategory,
-    deleteCategory,
+    addRole,
+    getAllRoles,
+    getRole,
+    updateRole,
+    deleteRole,
 };

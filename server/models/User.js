@@ -30,11 +30,32 @@ export default (sequelize) => {
                 is: /^[0-9a-z]{64}$/i, //constraint regex
                 allowNull: false,
             },
-            role: {
-                type: DataTypes.ENUM,
+            firstname: {
+                type: DataTypes.STRING,
                 allowNull: true,
-                values: ["admin", "client"],
-                defaultValue: "client",
+            },
+            lastname: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            quantity: {
+                type: DataTypes.SMALLINT.UNSIGNED,
+                allowNull: false,
+                defaultValue: 1,
+            },
+            children: {
+                type: DataTypes.SMALLINT.UNSIGNED,
+                allowNull: false,
+                defaultValue: 0,
+            },
+            allergies: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            phone: {
+                type: DataTypes.STRING,
+                allowNull: true,
+                unique: true,
             },
         },
         {

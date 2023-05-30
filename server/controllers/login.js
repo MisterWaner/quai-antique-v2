@@ -46,7 +46,10 @@ const login = async (req, res) => {
         );
 
         res.json({ message: "Bienvenue !", token: jwtToken });
-    } catch (error) {}
+    } catch (error) {
+        res.status(500).json("Database Error");
+        console.log(error);
+    }
 };
 
 export default login;

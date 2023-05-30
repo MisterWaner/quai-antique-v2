@@ -30,7 +30,8 @@ const addMeal = async (req, res) => {
         });
         return res.json({ message: " Plat créé avec succès", data: meal });
     } catch (error) {
-        return res.status(500).json({ message: "Database Error", error });
+        res.status(500).json("Database Error");
+        console.log(error);
     }
 };
 
@@ -39,7 +40,8 @@ const getAllMeals = async (req, res) => {
         const allMeals = await db.Meal.findAll();
         res.status(200).json(allMeals);
     } catch (error) {
-        res.status(500).json({ message: "Database Error", error });
+        res.status(500).json("Database Error");
+        console.log(error);
     }
 };
 
@@ -63,7 +65,8 @@ const getMeal = async (req, res) => {
 
         res.status(200).json(meal);
     } catch (error) {
-        res.status(500).json({ message: "Database Error", error });
+        res.status(500).json("Database Error");
+        console.log(error);
     }
 };
 
@@ -101,7 +104,8 @@ const updateMeal = async (req, res) => {
 
         res.json({ message: "Plat mis à jour !", data: meal });
     } catch (error) {
-        res.status(500).json({ message: "Database Error", error });
+        res.status(500).json("Database Error");
+        console.log(error);
     }
 };
 
@@ -113,14 +117,15 @@ const deleteMeal = async (req, res) => {
             return res.status(400).json({ message: "Paramètre manquant" });
         }
 
-        //deletation of user
+        //deletation of meal
         const meal = await db.Meal.destroy({
             where: { id: id },
             force: true,
         });
         res.status(200).json(meal, "Ce plat a été supprimé avec succès");
     } catch (error) {
-        res.status(500).json({ message: "Database Error", error });
+        res.status(500).json("Database Error");
+        console.log(error);
     }
 };
 

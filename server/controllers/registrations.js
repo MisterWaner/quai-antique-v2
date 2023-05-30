@@ -5,7 +5,7 @@ import { config } from "dotenv";
 config();
 
 async function register(req, res) {
-    const { email, password, confirmation, role, id } = req.body;
+    const { email, password, confirmation, roleId, id } = req.body;
 
     try {
         //Check Validation for datas
@@ -42,7 +42,7 @@ async function register(req, res) {
             email: email,
             password: password,
             confirmation: confirmation,
-            role: role,
+            roleId: roleId,
         });
 
         return res.json({
