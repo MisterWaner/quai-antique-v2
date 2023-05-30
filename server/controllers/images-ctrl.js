@@ -1,5 +1,5 @@
 //Import modules
-import db from "../config/sequelize-config";
+import db from "../config/sequelize-config.js";
 
 const addImage = async (req, res) => {
     try {

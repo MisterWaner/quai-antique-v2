@@ -1,6 +1,5 @@
 //Import modules
 import db from "../config/sequelize-config.js";
-import Formula from "../models/Formula.js";
 
 const addMenu = async (req, res) => {
     const { id, title } = req.body;
@@ -20,13 +19,10 @@ const addMenu = async (req, res) => {
             return res.status(409).json(`Le menu ${title} existe déjà !`);
         }
 
-        //Role creation
+        //Menu creation
         menu = await db.Menu.create({
             id: id,
             title: title,
-            formula: []
-        }, {
-            include: [Formula]
         });
 
         return res.json({
@@ -97,8 +93,8 @@ const updateMenu = async (req, res) => {
         menu = await db.Menu.update(
             {
                 title: title,
-            },
-            {
+                formula: [],
+            },{
                 where: { id: id },
             }
         );

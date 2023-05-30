@@ -40,13 +40,11 @@ export default (sequelize) => {
             },
             quantity: {
                 type: DataTypes.SMALLINT.UNSIGNED,
-                allowNull: false,
-                defaultValue: 1,
+                allowNull: true,
             },
             children: {
                 type: DataTypes.SMALLINT.UNSIGNED,
-                allowNull: false,
-                defaultValue: 0,
+                allowNull: true,
             },
             allergies: {
                 type: DataTypes.STRING,
@@ -56,7 +54,7 @@ export default (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: true,
                 unique: true,
-            },
+            }
         },
         {
             modelName: "user",

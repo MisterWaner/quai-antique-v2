@@ -54,7 +54,6 @@ Role.User = db.Role.hasMany(db.User, {
         defaultValue: "2"
     },
     sourceKey: "id"
-    
 });
 User.Role = db.User.belongsTo(db.Role);
 
