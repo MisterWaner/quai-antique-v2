@@ -45,7 +45,14 @@ const login = async (req, res) => {
             { expiresIn: maxAge }
         );
 
-        res.json({ message: "Bienvenue !", token: jwtToken });
+        res.cookie("jwt", jwtToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+            maxAge: maxAge * 1000,
+        });
+
+        res.json({ message: "Bienvenue !", user, token: jwtToken });
     } catch (error) {
         res.status(500).json("Database Error");
         console.log(error);

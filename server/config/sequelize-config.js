@@ -101,6 +101,6 @@ Formula.Menu = db.Formula.belongsToMany(db.Menu, {
     through: db.Menu_Formula,
 });
 
-db.sequelize.sync({ alter: true });
+db.sequelize.sync({});
 
 export default db;

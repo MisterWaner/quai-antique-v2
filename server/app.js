@@ -61,17 +61,18 @@ app.get("/api", (req, res) => {
     res.send("API en ligne et fonctionnelle");
 });
 
-app.use("/auth", authRouter);
-app.use("/users", userRouter);
-app.use('/categories', categoryRouter);
-app.use('/meals', mealRouter);
-app.use('/infos', infoRouter);
-app.use('/resas', resaRouter);
-app.use('/slots', slotRouter);
-app.use('/roles', roleRouter);
-app.use('/menus', menuRouter);
-app.use('/formulas', formulaRouter);
-app.use('/images', imageRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
+app.use('/api/categories', categoryRouter);
+app.use('/api/meals', mealRouter);
+app.use('/api/infos', infoRouter);
+app.use('/api/resas', resaRouter);
+app.use('/api/slots', slotRouter);
+
+app.use('/api/roles', roleRouter);
+app.use('/api/menus', menuRouter);
+app.use('/api/formulas', formulaRouter);
+app.use('/api/images', imageRouter);
 
 //start server
 db.sequelize
