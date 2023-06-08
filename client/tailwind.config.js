@@ -8,11 +8,16 @@ export default {
         extend: {
             colors: {
                 "bwn-color": "#7d5a50",
-                "pastel": "#fcdec0"
+                "pastel": "#fcdec0",
+                "ocre": "#E5B299"
             },
             backgroundColor: {
                 "bwn-color": "#7d5a50",
-                "pastel": "#fcdec0"
+                "pastel": "#fcdec0",
+                "ocre": "#E5B299"
+            },
+            boxShadowColor: {
+                "bwn-color": "#7d5a50"
             }
         },
     },

@@ -1,15 +1,18 @@
-
-
 export default function Home() {
     return (
         <>
-            <main className="container mt-[98px] mx-auto flex-1 h-full">
-                <section className="bg-[url('/images/restaurant.jpg')] bg-cover bg-center h-[90vh]">
+            <main className="w-full flex-1 h-full md:mt-[98px] lg:container lg:mx-auto">
+                <section className="bg-[url('/images/restaurant.jpg')] bg-cover bg-center h-[50vh] md:h-[70vh] lg:h-[90vh]">
                     <div className="h-full w-full backdrop-sepia-[.6]">
-                        <h1 className="text-shadow text-7xl flex justify-center items-center text-white h-full">
-                            Bienvenue au Quai Antique 
+                        <h1 className="text-shadow text-3xl font-bold flex justify-center items-center text-white h-full md:text-5xl lg:text-7xl">
+                            Bienvenue au Quai Antique
                         </h1>
                     </div>
+                </section>
+                <section className="p-5 lg:px-0">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea optio dolorem inventore magni qui est ut quo, odio tenetur rem fuga, animi aut cupiditate molestias. Eligendi incidunt blanditiis magni unde aut! Repudiandae necessitatibus blanditiis dicta, reprehenderit earum enim. Incidunt at debitis vitae quas sint nobis officia cum fugiat possimus dolorum placeat, assumenda non eveniet optio perspiciatis amet et tempora sit accusamus ullam a est? Dolorum, perspiciatis? Explicabo architecto maxime rerum aut nihil magni id, placeat, eius aliquam quo obcaecati iusto. Saepe ipsa ad itaque expedita nisi modi, aperiam dignissimos, debitis tempora fugiat earum deserunt alias, maxime exercitationem ducimus. Minus perferendis molestias laudantium? Aliquid at, iste sed aspernatur illo et mollitia aut harum tempora repellat architecto odit excepturi voluptas quam necessitatibus corporis minus commodi fuga deleniti reiciendis exercitationem. Fugiat excepturi officiis ex. Quidem eos, velit illum nemo placeat non fuga? Quia quidem ex natus cumque aspernatur ipsum pariatur! Minus, illo amet quam vero animi iure autem reprehenderit, eveniet corrupti maxime nesciunt soluta sequi, adipisci laudantium nisi. Sint temporibus ipsum corporis in nemo optio itaque sunt nesciunt sed perspiciatis quod eius repellendus eos ullam dolorem, esse tempore nihil quaerat alias, laborum eum harum mollitia iure! Eveniet adipisci harum eum. Inventore, neque aut tempore quis, error consectetur perspiciatis doloribus, architecto modi cum suscipit accusamus. Magnam asperiores dolorem quibusdam ducimus nobis similique cupiditate commodi quisquam molestiae! Sint, vero? Asperiores accusamus obcaecati laborum aspernatur ea quaerat? Vitae quas id aliquid blanditiis iusto at earum labore deserunt. Odio et eligendi possimus laboriosam a laudantium dignissimos unde quam debitis blanditiis minus vel quia sunt reprehenderit quaerat eaque quasi, qui, libero, beatae commodi quae repudiandae veniam ea. Ducimus corporis, quisquam, necessitatibus rem et explicabo iusto sunt in, assumenda a culpa hic error! Voluptatum, sequi praesentium reprehenderit temporibus quidem harum sed eveniet tempora laboriosam ex expedita provident explicabo nulla quos esse repellendus minima beatae magni? Excepturi consequuntur temporibus nobis distinctio, in accusantium ad incidunt dolores velit id ducimus fugit deleniti, blanditiis rem atque nam. Quae illo distinctio facilis vel minima dolor dolore nemo quidem quia. Quaerat, nihil iste repellendus, odio ipsum quae saepe ipsam alias asperiores illo perferendis praesentium laudantium illum quo. Exercitationem non quos placeat ex ipsam dolores ea quia eligendi doloribus, praesentium obcaecati voluptates accusantium quibusdam vitae, animi autem eveniet odio vel libero tempore nulla? Vero asperiores itaque nam officia deserunt beatae, perferendis corrupti voluptatum, dicta delectus rerum saepe ad cumque ex illo explicabo? Magni voluptates modi architecto alias, natus deleniti? Sapiente, mollitia eius! In iure consectetur consequuntur tempore natus sequi cumque laudantium delectus sapiente quidem fuga alias reprehenderit mollitia, facere fugit quaerat neque? Quia commodi at aliquid totam error debitis enim ex molestiae esse labore autem numquam expedita, obcaecati deserunt quod assumenda officiis doloribus porro sed dignissimos. Ipsam accusantium id libero voluptas esse. Quidem consequatur incidunt eaque nobis deleniti praesentium qui reiciendis nisi dignissimos, eos, officia maxime impedit. Natus incidunt in nisi culpa rem, dolore alias. Natus ab architecto nam quod molestias repudiandae nisi soluta consectetur aperiam, ad, labore iusto maxime. Amet voluptatum rem neque numquam.
+                    </p>
                 </section>
             </main>
         </>

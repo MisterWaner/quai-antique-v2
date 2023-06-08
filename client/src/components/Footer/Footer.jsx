@@ -6,11 +6,11 @@ import Visa from "../../assets/icons/cc-visa.svg";
 
 export default function Footer() {
     return (
-        <footer className="mt-auto h-[150px] flex justify-center items-center bg-bwn-color border border-t-black text-white text-6xl">
-            <div className="w-1/2 flex justify-around items-center h-full">
-                <div className="w-[150px] flex">
+        <footer className="mt-auto h-[250px] flex flex-col items-center bg-bwn-color border border-t-black text-white md:h-[150px]">
+            <div className="w-full h-full flex flex-col justify-around items-center md:flex-row 2xl:w-1/2  ">
+                <div className="w-[150px] flex justify-around">
                     <img
-                        className="w-5 mr-7"
+                        className="w-5"
                         src={Facebook}
                         alt="logo facebook"
                     />
@@ -21,10 +21,10 @@ export default function Footer() {
                         &copy; Quai antique - 2023 - Tous droits réservés
                     </p>
                 </div>
-                <div className="w-[150px] flex">
-                    <img className="w-5 mr-7" src={Euro} alt="logo facebook" />
+                <div className="w-[150px] flex justify-around">
+                    <img className="w-5" src={Euro} alt="logo facebook" />
                     <img
-                        className="w-7 mr-7"
+                        className="w-7"
                         src={Credit}
                         alt="logo instagram"
                     />
