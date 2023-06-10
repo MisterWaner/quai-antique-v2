@@ -17,7 +17,7 @@ export default function Footer() {
                     <img className="w-7" src={Instagram} alt="logo instagram" />
                 </div>
                 <div>
-                    <p className="text-xl text-shadow">
+                    <p className="text-xl text-shadow text-center">
                         &copy; Quai antique - 2023 - Tous droits réservés
                     </p>
                 </div>
