@@ -71,7 +71,7 @@ export default function Navbar() {
                         onClick={toggleItem}
                         className="font-pynion text-3xl md:text-2xl lg:text-3xl font-bold"
                     >
-                        <Link className="no-underline text-white text-shadow hover:underline hover:decoration-2 hover:underline-offset-4">
+                        <Link to="/equipe" className="no-underline text-white text-shadow hover:underline hover:decoration-2 hover:underline-offset-4">
                             L&apos;équipe
                         </Link>
                     </li>

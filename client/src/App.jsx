@@ -10,6 +10,7 @@ import PublicLayout from "./pages/PublicLayout/PublicLayout";
 import Home from "./pages/public/Home/Home";
 import Carte from "./pages/public/Carte/Carte";
 import Menus from "./pages/public/Menus/Menus";
+import Equipe from "./pages/public/Equipe/Equipe";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="/carte" element={<Carte />} />
                     <Route path="/menus" element={<Menus />} />
+                    <Route path="/equipe" element={<Equipe />} />
                 </Route>
             </>
         )
