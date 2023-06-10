@@ -12,6 +12,7 @@ import Carte from "./pages/public/Carte/Carte";
 import Menus from "./pages/public/Menus/Menus";
 import Equipe from "./pages/public/Equipe/Equipe";
 import About from "./pages/public/About/About";
+import Contact from "./pages/public/Contact/Contact";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/menus" element={<Menus />} />
                     <Route path="/equipe" element={<Equipe />} />
                     <Route path="/a-propos" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
                 </Route>
             </>
         )
