@@ -79,7 +79,7 @@ export default function Navbar() {
                         onClick={toggleItem}
                         className="font-pynion text-3xl md:text-2xl lg:text-3xl font-bold"
                     >
-                        <Link className="no-underline text-white text-shadow hover:underline hover:decoration-2 hover:underline-offset-4">
+                        <Link to="/a-propos" className="no-underline text-white text-shadow hover:underline hover:decoration-2 hover:underline-offset-4">
                             À propos
                         </Link>
                     </li>
