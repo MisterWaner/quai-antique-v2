@@ -13,6 +13,9 @@ import Menus from "./pages/public/Menus/Menus";
 import Equipe from "./pages/public/Equipe/Equipe";
 import About from "./pages/public/About/About";
 import Contact from "./pages/public/Contact/Contact";
+import AuthLayout from "./pages/AuthLayout/AuthLayout";
+import Profile from "./pages/auth/Profile/Profile";
+import Registration from "./pages/public/Registration/Registration";
 
 function App() {
 
@@ -26,6 +29,10 @@ function App() {
                     <Route path="/equipe" element={<Equipe />} />
                     <Route path="/a-propos" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/inscription" element={<Registration />} />
+                </Route>
+                <Route path="/mon-compte/:id" element={<AuthLayout />}>
+                    <Route index element={<Profile />} />
                 </Route>
             </>
         )
