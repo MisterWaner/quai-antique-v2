@@ -1,26 +1,14 @@
-import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { yupResolver} from '@hookform/resolvers/yup';
-
-const BASE_URL = 'http://localhost:3001';
+import { yupResolver } from "@hookform/resolvers/yup";
+import Axios from "../../../api/axios";
+import {
+    infoConnexionSchema,
+    infoSchema,
+    prefSchema,
+} from "../../../Validation/profileValidation";
 
 export default function Profile() {
 
-    const params = useParams();
-
-    const onSubmit = async (data, event) => {
-        event.preventDefault();
-        console.log(data);
-
-        try {
-            const res = await fetch(`${BASE_URL}/users/${params.id}`,{
-                method: "POST",
-                
-            })
-        } catch (error) {
-            
-        }
-    }
 
     return (
         <main className="w-full flex-1 h-full md:mt-[98px] lg:container lg:mx-auto">
