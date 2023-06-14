@@ -1,59 +1,56 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../../../Validation/registerValidation";
+import { connectionSchema } from "../../../Validation/connectionValidation";
 import Axios from "../../../api/axios";
 
-const REGISTRATION_URL = "/auth/register";
+const LOGIN_URL = "auth/login";
 
-export default function Registration() {
+export default function Connection() {
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
-        watch,
-        reset,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(registerSchema),
+        resolver: yupResolver(connectionSchema),
         mode: "onTouched",
     });
 
-    const navigate = useNavigate();
     const onSubmit = async (data, event) => {
         event.preventDefault();
         console.log(data);
 
         try {
-            const res = await Axios.post(REGISTRATION_URL, data);
-            if (res.status === 200) {
-                alert("Inscription effectuée avec succès");
-                reset();
-            } else if (res.status === 401) {
-                alert("Oops il y a eut un problème");
-            }
-            navigate("/connexion");
+            const res = await Axios.post(LOGIN_URL, data);
             console.log(res);
+
+            const role = res?.data?.user.role;
+            const token = res?.data?.token;
+            const id = res?.data?.user.id;
+            console.log(role);
+            console.log(token);
+
+            if (role === "1" && token) {
+                navigate("/dashboard");
+            } else if (role === "2" && id && token) {
+                navigate(`/mon-compte/${id}`);
+            }
         } catch (error) {
             console.log(error);
-            if (!error?.res) {
-                alert("Aucune réponse du serveur");
-            } else if (error.res?.status === 409) {
-                alert("Cet email est déjà enregistré");
-            } else {
-                alert("L'inscription a échouée");
-            }
         }
     };
 
     return (
         <main className="w-full flex-1 h-full md:mt-[98px] lg:container lg:mx-auto">
             <h1 className="text-center py-4 text-[50px] font-bold">
-                Inscription
+                Connexion
             </h1>
             <section className="w-1/2 mx-auto h-full mt-6 mb-12 lg:w-[500px]">
                 <form
-                    className="w-full h-full flex flex-col items-center space-y-2"
                     onSubmit={handleSubmit(onSubmit)}
+                    className="w-full h-full flex flex-col items-center space-y-2"
                 >
                     <div className="flex flex-col mb-4 w-full">
                         <label className="text-lg pb-1" htmlFor="email">
@@ -62,9 +59,9 @@ export default function Registration() {
                         <input
                             className="h-8 outline-none rounded-t-md text-base border border-b-black p-3 bg-ocre placeholder-gray-500"
                             type="email"
+                            name="email"
                             id="email"
                             autoComplete="off"
-                            placeholder="johndoe@example.com"
                             {...register("email")}
                         />
                         {errors.email ? (
@@ -80,11 +77,11 @@ export default function Registration() {
                             Mot de passe
                         </label>
                         <input
-                            className="h-8 outline-none rounded-t-md text-lg border border-b-black p-2 bg-ocre placeholder-gray-500"
+                            className="h-8 outline-none rounded-t-md text-base border border-b-black p-3 bg-ocre placeholder-gray-500"
                             type="password"
+                            name="password"
                             id="password"
                             autoComplete="off"
-                            placeholder="Mot de passe"
                             {...register("password")}
                         />
                         {errors.password ? (
@@ -95,39 +92,23 @@ export default function Registration() {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
-                        <label className="text-lg pb-1" htmlFor="password">
-                            Confirmation
-                        </label>
-                        <input
-                            className="h-8 outline-none rounded-t-md text-lg border border-b-black p-2 bg-ocre placeholder-gray-500"
-                            type="password"
-                            id="password"
-                            autoComplete="off"
-                            placeholder="Mot de passe"
-                            {...register("confirmation", {
-                                validate: (val) => {
-                                    if (watch("password") != val) {
-                                        return "Le mot de passe et la confirmation ne sont pas identiques";
-                                    }
-                                },
-                            })}
-                        />
-                        {errors.confirmation ? (
-                            <p className="error-msg text-center">
-                                {errors.confirmation?.message}
-                            </p>
-                        ) : (
-                            ""
-                        )}
-                    </div>
                     <button
                         className="p-2 text-lg rounded-md border border-black w-full bg-transparent font-bold hover:bg-bwn-color hover:text-white hover:text-shadow active:scale-[0.98]"
                         type="submit"
                     >
-                        Je m&apos;inscris
+                        Je me connecte
                     </button>
                 </form>
+                <p className="text-center text-sm mt-2">
+                    Vous n&apos;avez pas de compte ?{" "}
+                    <Link
+                        className="no-underline text-bwn-color font-bold hover:underline"
+                        to="/inscription"
+                    >
+                        Inscrivez-vous
+                    </Link>{" "}
+                    pour enregistrer vos préférences.
+                </p>
             </section>
         </main>
     );
