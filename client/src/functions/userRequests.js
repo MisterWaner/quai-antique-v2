@@ -1,8 +1,9 @@
 import Axios from "../api/axios";
 
-const GET_USER_URL = "/users/id";
-
 async function updateUser(data) {
+
+    const GET_USER_URL = "/users/id";
+    
     try {
         const res = await Axios.put(GET_USER_URL, data);
         console.log(res.data[0]);

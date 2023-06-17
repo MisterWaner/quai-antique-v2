@@ -11,7 +11,7 @@ const infoSchema = yup.object().shape({
 });
 
 const prefSchema = yup.object().shape({
-    allergies: yup.string().notRequired(),
+    allergies: yup.string().notRequired().trim(),
     quantity: yup
         .number()
         .min(
